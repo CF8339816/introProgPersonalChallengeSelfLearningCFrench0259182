@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,11 +29,23 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
         static int pisDmg = 15;   //Pistol damage
         static int rlDmg = 100;    //Rocket Launcher damage
         static int snpDmg = 50;    //Sniper Rifle damage
-
+        static string Character; // initalizes  variable
 
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("What is your character's name");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Character = Console.ReadLine();
+
+            Console.Clear();
+
+            name();//  call to method
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+
             if (IsAlive())
             {
                 Console.WriteLine($"Your Health is {health} you  are alive. ");
@@ -44,71 +57,63 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
 
             Console.ReadKey(true);
 
-            Console.WriteLine(" Please choose a weapon: 0 = Fist, 1 = Pistol, 2 = Rocket Launcher, 3 = Sniper Rifle" +"\n");
-            
-            string weaponSelect  = Console.ReadLine(); //store  weapon  selection
-
-            if (weaponSelect == "0")
-            {
-                Console.WriteLine("You choose to attack your enemy with your Bare Hands. " +"\n");
-                weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
-            }
-            else  if (weaponSelect == "1")
-            {
-                Console.WriteLine("You choose to attack your enemy with your trusty Pistol. " + "\n");
-                weapon = 1;  //modify weapon value based on user input  to  weaponSelect.
-            }
-            else if (weaponSelect == "2")
-            {
-                Console.WriteLine("You choose to attack your enemy with aFRikkinRocket Launcher... Overkill much? " + "\n");
-                weapon = 2;  //modify weapon value based on user input  to  weaponSelect.
-            }
-            else if (weaponSelect == "3")
-            {
-                Console.WriteLine("You choose to attack your enemy with a sleek andd stylish Sniper   Rifle. Woot Headshot! " + "\n");
-                weapon = 3;  //modify weapon value based on user input  to  weaponSelect.
-            }
-            else 
-            {
-                Console.WriteLine("You  did not have room totake that weapon with you  it is at home  in  your footlocker." + "\n");
-                weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
-            }
-
-
-            Console.ReadKey(true);
-
             //method activators  for reference
             //combatdmg();
+            //IsAlive();
+            //name();
+            //weaponSelector();
 
-
+            weaponSelector();
             combatdmg();
 
+            bool isEnemyDead = false; //  check to see if enemy is dead
 
-            
+            while (!isEnemyDead)   //while enemy is  not dead this will continue player attack in loop
+            {
+                if (enemyHealth > 0)
+                {
+                    Console.WriteLine($"Your enemy yet lives, your task is not yet complete. ");
+                    weaponSelector();
+                    combatdmg();
+                }
+                else 
+                {
+                    Console.WriteLine("you have slain your enemy. You can rest easy until your next inevitable combat." + "\n");
+                    weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
+                    break; // breaks the  loop
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                }
+                
+            }
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Console.ForegroundColor = ConsoleColor.White;
         }
         //Methods below here
 
@@ -162,6 +167,7 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
                     break;
 
             }
+            
         }
 
 
@@ -179,10 +185,52 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
 
         //method 4
 
+        static void name()
+        {
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("Name : ");
+            Console.ForegroundColor = ConsoleColor.Blue; 
+            Console.WriteLine($"{Character}" + "\n");
+
+        }
+
 
 
         //method 5
 
+        static void weaponSelector()
+        {
+            Console.WriteLine(" Please choose a weapon: 0 = Fist, 1 = Pistol, 2 = Rocket Launcher, 3 = Sniper Rifle" + "\n");
+
+            string weaponSelect = Console.ReadLine(); //store  weapon  selection
+
+            if (weaponSelect == "0")
+            {
+                Console.WriteLine("You choose to attack your enemy with your Bare Hands. " + "\n");
+                weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
+            }
+            else if (weaponSelect == "1")
+            {
+                Console.WriteLine("You choose to attack your enemy with your trusty Pistol. " + "\n");
+                weapon = 1;  //modify weapon value based on user input  to  weaponSelect.
+            }
+            else if (weaponSelect == "2")
+            {
+                Console.WriteLine("You choose to attack your enemy with a FRIKKIN Rocket Launcher... Overkill much? " + "\n");
+                weapon = 2;  //modify weapon value based on user input  to  weaponSelect.
+            }
+            else if (weaponSelect == "3")
+            {
+                Console.WriteLine("You choose to attack your enemy with a sleek andd stylish Sniper Rifle. Woot Headshot! " + "\n");
+                weapon = 3;  //modify weapon value based on user input  to  weaponSelect.
+            }
+            else
+            {
+                Console.WriteLine("You  did not have room totake that weapon with you it is at home in your footlocker." + "\n");
+                weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
+            }
+        }
 
         //method 6
 
