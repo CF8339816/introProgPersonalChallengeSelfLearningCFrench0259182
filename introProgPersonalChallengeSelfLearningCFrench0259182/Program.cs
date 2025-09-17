@@ -30,8 +30,8 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
         static int rlDmg = 100;    //Rocket Launcher damage
         static int snpDmg = 50;    //Sniper Rifle damage
         static string Character; // initalizes  variable
-        static string wepType; // initalizes  variable
-
+        static string wepType = "big stick"; // initalizes  variable
+        static string hStat = "Catch Phrase!";
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -45,27 +45,31 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
             name();//  call to method
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
+            /*
+                        if (IsAlive())
+                        {
+                            Console.WriteLine($"Your Health is {health} you  are alive. ");
+                        }
+                        else 
+                        {
+                            Console.WriteLine($"Your health is {health} you are dead. " + "\n");
+                        }
 
-            if (IsAlive())
-            {
-                Console.WriteLine($"Your Health is {health} you  are alive. ");
-            }
-            else 
-            {
-                Console.WriteLine($"Your health is {health} you are dead. " + "\n");
-            }
-
-            Console.ReadKey(true);
-
+                        Console.ReadKey(true);
+            */
             //method activators  for reference
             //combatdmg();
             //IsAlive();
             //name();
             //weaponSelector();
-            //stats()
-            //physicalStatus()
+            //HUD();
+            //LifeStat();
+            //statsBlock();
 
-            stats();
+
+            HUD();
+            /* statsBlock();
+             LifeStat();*/
             weaponSelector();
             combatdmg();
 
@@ -75,7 +79,7 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
             {
                 if (enemyHealth > 0)
                 {
-                    Console.WriteLine($"Your enemy yet lives, your task is not yet complete. ");
+                    Console.WriteLine($"Your enemy yet lives, your task is not yet complete. " + "\n " + "\n ");
                     weaponSelector();
                     combatdmg();
                 }
@@ -119,7 +123,7 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
             Console.ForegroundColor = ConsoleColor.White;
         }
         //Methods below here
-
+/*
         //method 1
         static bool IsAlive()
 
@@ -134,7 +138,7 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
                 return false;
             }
         }
-
+*/
         //method 2
 
         static void combatdmg()
@@ -182,7 +186,7 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
 
             enemyHealth -= amount;
 
-            Console.WriteLine($"enemy health now {enemyHealth}. ");
+            Console.WriteLine($"enemy health now {enemyHealth}. " +"\n");
         }
 
 
@@ -240,61 +244,64 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
             }
         }
 
+
         //method 6
-        static void stats()
+       static void statsBlock()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
 
-            Console.WriteLine("{0,0}{1,8}{2,12}{3,9}", "life", "condition", "weapon");
-            Console.WriteLine("{0,2}{1,10}{2,10}{3,10}", health, hStat, wepType + "\n");
+            Console.WriteLine("{0,0}{1,15}{2,12}", "life", "condition", "weapon");
+
+            Console.Write("{0,2}", health );
+            Console.Write("{0,17}", hStat );
+            Console.WriteLine("{0,15}", wepType + "\n");
+
+            //Console.WriteLine("{0,2}{1,13}{2,14}", health, hStat, wepType + "\n");
+        }
+      
+        
+        //method 7
+        
+       static void LifeStat()
+         
+        {
+            if (health == 100) 
+            {
+                hStat = "Fit as a fiddle";
+             }
+            else if (health > 75)
+            {
+                hStat = "Healthy as a horse";
+            }
+            else if (health > 50)
+            {
+                hStat = "Feeling fine";
+            }
+            else if (health > 25)
+            {
+                hStat = "Little winded";
+            }
+            else if (health > 10)
+            {
+                hStat = "Just a flesh wound";
+            }
+            else if (health <= 0)
+            {
+                hStat = "Dead as a doornail";
+            }
+
         }
 
-        /*
-                //method 7
 
-                static void physicalStatus()
-                {
-                    switch (weapon)
-                    {
-                        case 0:
-                            Console.WriteLine($"You Fist the enemy for {fistDmg} damage. ");
-                            DealDamageToEnemy(5);
-
-                            break;
-
-                        case 1:
-                            Console.WriteLine($"You shoot the enemy for {pisDmg} damage. ");
-                            DealDamageToEnemy(15);
-
-                            break;
-
-                        case 2:
-                            Console.WriteLine($"You explodinate the enemy for {rlDmg} damage. ");
-                            DealDamageToEnemy(100);
-                            weapon = 0;
-                            break;
-
-                        case 3:
-                            Console.WriteLine($"You snipe the enemy for {snpDmg} damage. ");
-                            DealDamageToEnemy(50);
-                            break;
-
-                        default:
-                            Console.WriteLine("Weapon was not packed in you kit. Please choose again.");
-
-                            break;
-
-                    }
-
-                }
-
-                */
 
         //method 8
+        static void HUD()
+        {
 
-        
-
-
+            statsBlock();
+            LifeStat();
+        }
+       
 
 
         //Methods above here
