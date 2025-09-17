@@ -30,7 +30,7 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
         static int rlDmg = 100;    //Rocket Launcher damage
         static int snpDmg = 50;    //Sniper Rifle damage
         static string Character; // initalizes  variable
-
+        static string wepType; // initalizes  variable
 
         static void Main(string[] args)
         {
@@ -62,7 +62,10 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
             //IsAlive();
             //name();
             //weaponSelector();
+            //stats()
+            //physicalStatus()
 
+            stats();
             weaponSelector();
             combatdmg();
 
@@ -209,30 +212,88 @@ namespace introProgPersonalChallengeSelfLearningCFrench0259182
             {
                 Console.WriteLine("You choose to attack your enemy with your Bare Hands. " + "\n");
                 weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
+                wepType = "Fist";  // modify weapon description in stats 
             }
             else if (weaponSelect == "1")
             {
                 Console.WriteLine("You choose to attack your enemy with your trusty Pistol. " + "\n");
                 weapon = 1;  //modify weapon value based on user input  to  weaponSelect.
+                wepType = "Pistol";  // modify weapon description in stats
             }
             else if (weaponSelect == "2")
             {
                 Console.WriteLine("You choose to attack your enemy with a FRIKKIN Rocket Launcher... Overkill much? " + "\n");
                 weapon = 2;  //modify weapon value based on user input  to  weaponSelect.
+                wepType = "Rocket Launcher";  // modify weapon description in stats
             }
             else if (weaponSelect == "3")
             {
                 Console.WriteLine("You choose to attack your enemy with a sleek andd stylish Sniper Rifle. Woot Headshot! " + "\n");
                 weapon = 3;  //modify weapon value based on user input  to  weaponSelect.
+                wepType = "Sniper Rifle";  // modify weapon description in stats
             }
             else
             {
                 Console.WriteLine("You  did not have room totake that weapon with you it is at home in your footlocker." + "\n");
                 weapon = 0;  //modify weapon value based on user input  to  weaponSelect.
+                wepType = "Fist";  // modify weapon description in stats
             }
         }
 
         //method 6
+        static void stats()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+
+            Console.WriteLine("{0,0}{1,8}{2,12}{3,9}", "life", "condition", "weapon");
+            Console.WriteLine("{0,2}{1,10}{2,10}{3,10}", health, hStat, wepType + "\n");
+        }
+
+        /*
+                //method 7
+
+                static void physicalStatus()
+                {
+                    switch (weapon)
+                    {
+                        case 0:
+                            Console.WriteLine($"You Fist the enemy for {fistDmg} damage. ");
+                            DealDamageToEnemy(5);
+
+                            break;
+
+                        case 1:
+                            Console.WriteLine($"You shoot the enemy for {pisDmg} damage. ");
+                            DealDamageToEnemy(15);
+
+                            break;
+
+                        case 2:
+                            Console.WriteLine($"You explodinate the enemy for {rlDmg} damage. ");
+                            DealDamageToEnemy(100);
+                            weapon = 0;
+                            break;
+
+                        case 3:
+                            Console.WriteLine($"You snipe the enemy for {snpDmg} damage. ");
+                            DealDamageToEnemy(50);
+                            break;
+
+                        default:
+                            Console.WriteLine("Weapon was not packed in you kit. Please choose again.");
+
+                            break;
+
+                    }
+
+                }
+
+                */
+
+        //method 8
+
+        
+
 
 
 
